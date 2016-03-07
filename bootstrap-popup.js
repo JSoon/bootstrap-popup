@@ -147,7 +147,7 @@
                 typeof (callback) === 'function' ? callback(dialogE, message): null;
             });
             dialogCancel.on('click', function () {
-                $(this).modal('hide');
+                dialogE.modal('hide');
             });
             // 隐藏后删除 modal 节点
             dialogE.on('hidden.bs.modal', function () {
