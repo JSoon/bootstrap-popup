@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>bootstrap popup</title>
+    <!--Third-party-->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Toast modal -->
+    <button id="J_Toast" type="button" class="btn btn-primary" data-toggle="modal">Toast</button>
+    <button id="J_Confirm" type="button" class="btn btn-primary" data-toggle="modal">Confirm</button>
+    <button id="J_Prompt" type="button" class="btn btn-primary" data-toggle="modal">Prompt</button>
+    <button id="J_Custom" type="button" class="btn btn-primary" data-toggle="modal">Custom</button>
+
+    <!--Third-party-->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="dist/bootstrap-popup.min.js"></script>
+    <script>
+        // Usage
+
+        $('#J_Toast').click(function() {
+            $.bs.popup.toast({
+                title: 'Title',
+                info: 'This is a toast.'
+            }, function(dialogE) {
+                var modalBody = dialogE.find('.modal-body');
+                modalBody.append('<p class="countdown"></p>');
+                var cd = modalBody.find('.countdown'),
+                    i = 3;
+                cd.html('It would be disappeared in ' + i + 's by default.');
+                setInterval(function() {
+                    i -= 1;
+                    cd.html('It would be disappeared in ' + i + 's by default.');
+                }, 1000);
+            });
+        });
+
+        $('#J_Confirm').click(function() {
+            $.bs.popup.confirm({
+                title: 'Title',
+                info: 'Do you want confirm?'
+            }, function(dialogE) {
+                alert('You are confirmed.');
+                dialogE.modal('hide');
+            });
+        });
+
+        $('#J_Prompt').click(function() {
+            $.bs.popup.prompt({
+                title: 'Title',
+                info: 'Input your name, please.'
+            }, function(dialogE, message) {
+                // nested toast
+                $.bs.popup.toast({
+                    title: 'Title',
+                    info: 'You are input: ' + message
+                }, function() {
+                    dialogE.modal('hide');
+                });
+            });
+        });
+
+        $('#J_Custom').click(function() {
+            $.bs.popup.custom({
+                title: 'Title',
+                dom: '<div class="custom"><h1>This is a custom DOM.</h1></div>',
+                width: '200px'
+            }, function(dialogE) {
+                setTimeout(function() {
+                    dialogE.modal('hide');
+                }, 3000);
+            });
+        });
+
+    </script>
+</body>
+
+</html>

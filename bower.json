@@ -1,0 +1,19 @@
+{
+    "name": "bootstrap-popup",
+    "description": "DE: bower v1.7.7",
+    "version": "1.0.0",
+    "author": "jsoon",
+    "license": "jsoon",
+    "private": true,
+    "dependencies": {
+        "jquery": "~1",
+        "bootstrap": "~3"
+    },
+    "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
