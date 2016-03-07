@@ -2,7 +2,15 @@
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
-var rename = require("gulp-rename");
+var rename = require('gulp-rename');
+var header = require('gulp-header');
+var package = require('./package.json');
+var banner = ['/**',
+  ' * <%= pkg.name %> v<%= pkg.version %>',
+  ' * Copyright <%= new Date().getFullYear() %> <%= pkg.author%>',
+  ' * Licensed under the <%= pkg.license %> license',
+  ' */',
+  ''].join('\n');
 
 // Default
 gulp.task('default', ['watch']);
@@ -17,6 +25,9 @@ gulp.task('JS', function () {
         .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(sourcemaps.write('.'))
+        .pipe(header(banner, {
+            pkg: package
+        }))
         .pipe(gulp.dest('dist'));
 });
 
