@@ -1,5 +1,5 @@
 /**
- * bootstrap-popup v1.0.0
+ * bootstrap-popup v1.0.1
  * Copyright 2016 jsoon
  * Licensed under the MIT license
  */
@@ -17,7 +17,7 @@
         }
         factory(jQuery, jQuery.fn.modal);
     }
-}(function ($, modal) {
+} (function ($, modal) {
     'use strict';
     $.bs = $.bs || {};
     var popup = function () {
@@ -34,7 +34,7 @@
 
         that.toast = function (opts, callback) {
             id = 'J_PopupToast' + randomNum();
-            html = '<div id="' + id + '" class="modal fade" tabindex="-1">' +
+            html = '<div id="' + id + '" class="modal "' + opts.animated + ' tabindex="-1">' +
                 '<div class="modal-dialog">' +
                 '<div class="modal-content">' +
                 '<div class="modal-header">' +
@@ -52,7 +52,7 @@
             dialogE = $('#' + id);
             dialogE.find('.modal-dialog').css('width', opts.width);
             dialogE.on('shown.bs.modal', function () {
-                typeof (callback) === 'function' ? callback(dialogE): null;
+                typeof (callback) === 'function' ? callback(dialogE) : null;
                 var that = this,
                     t = setTimeout(function () {
                         $(that).modal('hide');
@@ -65,7 +65,7 @@
 
         that.confirm = function (opts, callback) {
             id = 'J_PopupConfirm' + randomNum();
-            html = '<div id="' + id + '" class="modal fade" tabindex="-1">' +
+            html = '<div id="' + id + '" class="modal "' + opts.animated + ' tabindex="-1">' +
                 '<div class="modal-dialog">' +
                 '<div class="modal-content">' +
                 '<div class="modal-header">' +
@@ -89,7 +89,7 @@
             dialogOk = dialogE.find('.J_Ok');
             dialogCancel = dialogE.find('.J_Cancel');
             dialogOk.on('click', function () {
-                typeof (callback) === 'function' ? callback(dialogE): null;
+                typeof (callback) === 'function' ? callback(dialogE) : null;
             });
             dialogCancel.on('click', function () {
                 dialogE.modal('hide');
@@ -101,7 +101,7 @@
 
         that.prompt = function (opts, callback) {
             id = 'J_PopupPrompt' + randomNum();
-            html = '<div id="' + id + '" class="modal fade" tabindex="-1">' +
+            html = '<div id="' + id + '" class="modal "' + opts.animated + ' tabindex="-1">' +
                 '<div class="modal-dialog">' +
                 '<div class="modal-content">' +
                 '<div class="modal-header">' +
@@ -127,7 +127,7 @@
             dialogCancel = dialogE.find('.J_Cancel');
             dialogOk.on('click', function () {
                 message = dialogE.find('.J_Message').eq(0).val();
-                typeof (callback) === 'function' ? callback(dialogE, message): null;
+                typeof (callback) === 'function' ? callback(dialogE, message) : null;
             });
             dialogCancel.on('click', function () {
                 dialogE.modal('hide');
@@ -139,7 +139,7 @@
 
         that.custom = function (opts, callback) {
             id = 'J_PopupCustom' + randomNum();
-            html = '<div id="' + id + '" class="modal fade" tabindex="-1">' +
+            html = '<div id="' + id + '" class="modal "' + opts.animated + ' tabindex="-1">' +
                 '<div class="modal-dialog">' +
                 '<div class="modal-content">' +
                 '<div class="modal-header">' +
@@ -154,7 +154,7 @@
             dialogE = $('#' + id);
             dialogE.find('.modal-dialog').css('width', opts.width);
             dialogE.modal('show');
-            typeof (callback) === 'function' ? callback(dialogE): null;
+            typeof (callback) === 'function' ? callback(dialogE) : null;
             dialogE.on('hidden.bs.modal', function () {
                 $(this).remove();
             });

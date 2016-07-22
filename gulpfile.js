@@ -38,7 +38,7 @@ gulp.task('JS', function () {
 });
 
 // Watch
-gulp.task('watch', ['less', 'JS'], function () {
+gulp.task('watch', ['JS'], function () {
     var files = [''];
     gulp.watch(files, ['JS']);
 });
